@@ -2,6 +2,7 @@ package javabuckets.mods.ihm.main;
 
 import javabuckets.mods.ihm.init.ModBlocks;
 import javabuckets.mods.ihm.init.ModItems;
+import javabuckets.mods.ihm.init.ModRecipes;
 import javabuckets.mods.ihm.proxies.ServerProxy;
 import javabuckets.mods.ihm.utility.Reference;
 import cpw.mods.fml.common.Mod;
@@ -28,6 +29,7 @@ public class InstantHouse
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		ModRecipes.init();
 		proxy.registerProxyInformation();
 	}
 	
