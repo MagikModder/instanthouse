@@ -1,10 +1,17 @@
 package javabuckets.mods.ihm.instants;
 
+import java.util.List;
+
 import javabuckets.mods.ihm.init.ModItems;
+import javabuckets.mods.ihm.init.ModMisc;
 import javabuckets.mods.ihm.utility.Reference;
+import net.ilexiconn.llibrary.common.structure.util.GenHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
@@ -16,55 +23,7 @@ public class InstantHouseBase extends Item
 	{
 		super();
 		this.setMaxStackSize(1);
-	}
-	
-	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int j, float f1, float f2, float f3) 
-	{
-		if (j == 0)
-		{
-			--y;
-		}
-		
-		if (j == 1)
-		{
-			++y;
-		}
-		
-		if (j == 2)
-		{
-			--z;
-		}
-		
-		if (j == 3)
-		{
-			++z;
-		}
-		
-		if (j == 4)
-		{
-			--x;
-		}
-		
-		if (j == 5)
-		{
-			++x;
-		}
-		
-		if (!player.canPlayerEdit(x, y, z, j, itemstack))
-		{
-			return false;
-		}
-		
-		else
-		{
-			if (world.isAirBlock(x, y, z))
-			{
-				buildJediTemple(world, x, y, z);
-			}
-			
-			player.inventory.consumeInventoryItem(this);
-			return true;
-		}
+		this.setCreativeTab(ModMisc.ihmTab);
 	}
 	
 	public void buildDefaultHouse(World world, int x, int y, int z)
@@ -232,11 +191,96 @@ public class InstantHouseBase extends Item
 	
 	public void buildJediTemple(World world, int x, int y, int z)
 	{
+		world.setBlock(x, y, z, Blocks.stone_slab, 7, 2);
+		world.setBlock(x+11, y, z, Blocks.stone_slab, 7, 2);
+		world.setBlock(x, y, z+11, Blocks.stone_slab, 7, 2);
+		world.setBlock(x+11, y, z+11, Blocks.stone_slab, 7, 2);
+		
 		for (int i = 0; i < 10; i++)
 		{
-			world.setBlock(x, y, z+1+i, Blocks.quartz_stairs);
+			world.setBlock(x, y, z+1+i, Blocks.quartz_stairs, 0, 2);
+			world.setBlock(x+1+i, y, z, Blocks.quartz_stairs, 2, 2);
+			world.setBlock(x+11, y, z+1+i, Blocks.quartz_stairs, 1, 2);
+			world.setBlock(x+1+i, y, z+11, Blocks.quartz_stairs, 3, 2);
 			world.setBlock(x+1, y, z+1+i, Blocks.quartz_block, 1, 2);
+			world.setBlock(x+10, y, z+1+i, Blocks.quartz_block, 1, 2);
+			world.setBlock(x+1+i, y, z+1, Blocks.quartz_block, 1, 2);
+			world.setBlock(x+1+i, y, z+10, Blocks.quartz_block, 1, 2);
 		}
+		
+		for (int i = 0; i < 8; i++)
+		{	
+			world.setBlock(x+2, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+3, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+4, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+5, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+6, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+7, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+8, y, z+2+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+9, y, z+2+i, Blocks.quartz_block, 0, 2);
+		}
+		
+		for (int i = 0; i < 8; i++)
+		{
+			world.setBlock(x+2+i, y, z+3, Blocks.quartz_block, 1, 2);
+			world.setBlock(x+2+i, y, z+8, Blocks.quartz_block, 1, 2);
+			world.setBlock(x+3, y, z+2+i, Blocks.quartz_block, 1, 2);
+			world.setBlock(x+8, y, z+2+i, Blocks.quartz_block, 1, 2);
+		}
+		
+		for (int i = 0; i < 3; i++)
+		{
+			world.setBlock(x+3, y+1+i, z+3, Blocks.quartz_block, 2, 2);
+			world.setBlock(x+3, y+1+i, z+8, Blocks.quartz_block, 2, 2);
+			world.setBlock(x+8, y+1+i, z+8, Blocks.quartz_block, 2, 2);
+			world.setBlock(x+8, y+1+i, z+3, Blocks.quartz_block, 2, 2);
+		}
+		
+		for (int i = 0; i < 6; i++)
+		{
+			world.setBlock(x+3, y+4, z+3+i, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+3+i, y+4, z+3, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+8, y+4, z+3+i, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+3+i, y+4, z+8, Blocks.stone_slab, 7, 2);
+		}
+		
+		for (int i = 0; i < 4; i++)
+		{
+			world.setBlock(x+4, y+4, z+4+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+4+i, y+4, z+4, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+7, y+4, z+4+i, Blocks.quartz_block, 0, 2);
+			world.setBlock(x+4+i, y+4, z+7, Blocks.quartz_block, 0, 2);
+		}
+		
+		for (int i = 0; i < 2; i++)
+		{
+			world.setBlock(x+5, y+5, z+5+i, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+6, y+5, z+5+i, Blocks.stone_slab, 7, 2);
+		}
+		
+		// Decoration
+		
+		for (int i = 0; i < 2; i++)
+		{
+			world.setBlock(x+5, y+1, z+5+i, Blocks.quartz_block, 2, 2);
+			world.setBlock(x+6, y+1, z+5+i, Blocks.quartz_block, 2, 2);
+			
+			world.setBlock(x+4, y+1, z+5+i, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+7, y+1, z+5+i, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+5+i, y+1, z+4, Blocks.stone_slab, 7, 2);
+			world.setBlock(x+5+i, y+1, z+7, Blocks.stone_slab, 7, 2);
+			
+			world.setBlock(x+5, y+4, z+5+i, Blocks.glowstone);
+			world.setBlock(x+6, y+4, z+5+i, Blocks.glowstone);
+		}
+		
+		ItemStack lightSaber = new ItemStack(Items.diamond_sword);
+		lightSaber.setStackDisplayName("Blue Lightsaber");
+		lightSaber.addEnchantment(Enchantment.projectileProtection, 5);
+		lightSaber.addEnchantment(Enchantment.sharpness, 10);
+		lightSaber.addEnchantment(Enchantment.unbreaking, 1000);
+		
+		GenHelper.spawnEntityInStructure(world, new EntityItem(world, x, y, z, lightSaber), x+6, y+3, z+6);
 	}
 	
 	@Override
@@ -244,4 +288,9 @@ public class InstantHouseBase extends Item
 	{
 		itemIcon = iconRegistry.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName().substring(5));
 	}
+	
+	/*public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List list, boolean p_77624_4_) 
+	{
+		list.add("{" + this.getUnlocalizedName() + "}");
+	}*/
 }

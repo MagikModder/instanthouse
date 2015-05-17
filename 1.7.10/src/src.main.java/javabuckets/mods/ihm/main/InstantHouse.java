@@ -1,6 +1,6 @@
 package javabuckets.mods.ihm.main;
 
-import javabuckets.mods.ihm.init.ModBlocks;
+import javabuckets.mods.ihm.init.ModMisc;
 import javabuckets.mods.ihm.init.ModItems;
 import javabuckets.mods.ihm.init.ModRecipes;
 import javabuckets.mods.ihm.proxies.ServerProxy;
@@ -22,7 +22,7 @@ public class InstantHouse
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		ModBlocks.init();
+		ModMisc.init();
 		ModItems.init();
 	}
 	

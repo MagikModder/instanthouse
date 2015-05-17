@@ -2,6 +2,7 @@ package javabuckets.mods.ihm.instants;
 
 import java.util.List;
 
+import javabuckets.mods.ihm.init.ModMisc;
 import javabuckets.mods.ihm.utility.Reference;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +17,7 @@ public class InstantCoreBase extends Item
 	{
 		super();
 		this.setMaxStackSize(16);
+		this.setCreativeTab(ModMisc.ihmTab);
 	}
 	
 	public Item setTier(int tier)

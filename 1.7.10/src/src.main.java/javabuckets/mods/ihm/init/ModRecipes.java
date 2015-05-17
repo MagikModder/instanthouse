@@ -14,6 +14,7 @@ public class ModRecipes
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.instantCoreTier2), new Object[] 	{ "CIC", "IBI", "CIC", 'C', Blocks.iron_block, 'I', Items.gold_ingot, 'B', Items.emerald }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.instantCoreTier3), new Object[] 	{ "CIC", "IBI", "CIC", 'C', Items.emerald, 'I', Items.diamond, 'B', Blocks.obsidian }));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.defaultHouse), new Object[] 		{ "SSS", "WCW", "PPP", 'S', Blocks.stonebrick, 'W', "logWood", 'P', "plankWood", 'C', ModItems.instantCoreTier1 })); 
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.defaultHouse), new Object[] 		{ "SSS", "WCW", "PPP", 'S', Blocks.stonebrick, 'W', "logWood", 'P', "plankWood", 'C', ModItems.instantCoreTier1 }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.jediTemple), new Object[]         { "QGQ", "QTQ", "SDS", 'Q', Blocks.quartz_block, 'G', Blocks.glowstone, 'T', ModItems.instantCoreTier3, 'S', Blocks.quartz_stairs, 'D', Items.diamond_sword }));
 	}
 }

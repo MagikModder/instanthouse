@@ -1,0 +1,8 @@
+itemGroup.tabInstant=Instant House
+
+item.instant_core_tier_1.name=Instant Core - Tier 1
+item.instant_core_tier_2.name=Instant Core - Tier 2
+item.instant_core_tier_3.name=Instant Core - Tier 3
+
+item.default_house.name=Instant - Default House
+item.jedi_temple.name=Instant - Jedi Temple
