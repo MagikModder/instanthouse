@@ -1,11 +1,10 @@
 package javabuckets.mods.ihm.instants;
 
-import java.util.List;
-
-import javabuckets.mods.ihm.init.ModItems;
+import javabuckets.mods.ihm.blocks.BlockPortableInstant;
 import javabuckets.mods.ihm.init.ModMisc;
 import javabuckets.mods.ihm.utility.Reference;
 import net.ilexiconn.llibrary.common.structure.util.GenHelper;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.item.EntityItem;
@@ -281,6 +280,62 @@ public class InstantHouseBase extends Item
 		lightSaber.addEnchantment(Enchantment.unbreaking, 1000);
 		
 		GenHelper.spawnEntityInStructure(world, new EntityItem(world, x, y, z, lightSaber), x+6, y+3, z+6);
+	}
+	
+	public void buildTent(World world, int x, int y, int z, int colorCode)
+	{
+		Block tent = ModMisc.portableInstantTent;
+		
+		// Tent
+		setBlock(world, 	x  , y  , z  , 		tent, colorCode);
+		
+		setBlock(world, 	x  , y+1, z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y  , z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+1, z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y  , z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y+1, z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y  , z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y+1, z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y  , z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+1, z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y  , z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y+1, z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+3, y  , z+1, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+3, y+1, z+1, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+3, y  , z+3, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+3, y+1, z+3, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+4, y  , z+2, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+4, y+1, z+2, 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y+2, z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+2, z  , 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y+2, z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+2, z+4, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y+2, z+1, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y+2, z+3, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+3, y+2, z+2, 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y+3, z+1, 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y+3, z+2, 		Blocks.wool, colorCode);
+		setBlock(world, 	x  , y+3, z+3, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+3, z+1, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+3, z+2, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+1, y+3, z+3, 		Blocks.wool, colorCode);
+		setBlock(world, 	x+2, y+3, z+2, 		Blocks.wool, colorCode);
+		
+		// Misc.
+		world.setBlock(x, y, z+1, Blocks.fence);
+		world.setBlock(x, y, z+2, Blocks.fence);
+		world.setBlock(x, y+1, z+2, Blocks.fence);
+		world.setBlock(x, y+2, z+2, Blocks.fence);
+		world.setBlock(x, y+1, z+1, Blocks.torch);
+		world.setBlock(x+1, y, z+1, Blocks.chest);
+		world.setBlock(x+2, y, z+1, Blocks.chest);
+		world.setBlock(x+3, y, z+2, Blocks.crafting_table);
+		world.setBlock(x+3, y+1, z+2, Blocks.furnace);
+	}
+	
+	public void setBlock(World world, int x, int y, int z, Block block, int metaData)
+	{
+		world.setBlock(x, y, z, block, metaData, 2);
 	}
 	
 	@Override

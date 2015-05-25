@@ -3,10 +3,12 @@ package net.ilexiconn.llibrary.client.model.entity;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.llibrary.client.render.IExtension;
 import net.ilexiconn.llibrary.client.render.IModelExtension;
 import net.ilexiconn.llibrary.client.render.RenderHelper;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -16,22 +18,27 @@ public final class ModelLLibraryBiped extends ModelBiped
 {
     public ModelLLibraryBiped()
     {
-        List<IModelExtension> extensions = RenderHelper.getModelExtensionsFor(ModelBiped.class);
-        if (extensions != null) for (IModelExtension extension : extensions) extension.init(this);
+        List<IExtension> extensions = RenderHelper.getModelExtensionsFor(ModelBiped.class);
+        if (extensions != null) for (IExtension extension : extensions)
+            extension.init(this);
     }
 
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float rotationFloat, float rotationYaw, float rotationPitch, float partialTicks)
     {
-        List<IModelExtension> modelExtensions = RenderHelper.getModelExtensionsFor(ModelBiped.class);
+        List<IExtension> modelExtensions = RenderHelper.getModelExtensionsFor(ModelBiped.class);
 
         if (modelExtensions == null) modelExtensions = Lists.newArrayList();
 
         setRotationAngles(limbSwing, limbSwingAmount, rotationFloat, rotationYaw, rotationPitch, partialTicks, entity);
 
-        for (IModelExtension extension : modelExtensions)
+        for (IExtension extension : modelExtensions)
         {
-            extension.setRotationAngles(this, limbSwing, limbSwingAmount, rotationFloat, rotationYaw, rotationPitch, partialTicks, entity);
-            extension.preRender(entity, this, partialTicks);
+            if (extension instanceof IModelExtension)
+            {
+                IModelExtension modelExtension = (IModelExtension) extension;
+                modelExtension.setRotationAngles(this, limbSwing, limbSwingAmount, rotationFloat, rotationYaw, rotationPitch, partialTicks, entity);
+                modelExtension.preRender((EntityPlayer) entity, this, partialTicks);
+            }
         }
 
         if (isChild)
@@ -64,10 +71,14 @@ public final class ModelLLibraryBiped extends ModelBiped
             bipedHeadwear.render(partialTicks);
         }
 
-        for (IModelExtension extension : modelExtensions)
+        for (IExtension extension : modelExtensions)
         {
-            extension.setRotationAngles(this, limbSwing, limbSwingAmount, rotationFloat, rotationYaw, rotationPitch, partialTicks, entity);
-            extension.postRender(entity, this, partialTicks);
+            if (extension instanceof IModelExtension)
+            {
+                IModelExtension modelExtension = (IModelExtension) extension;
+                modelExtension.setRotationAngles(this, limbSwing, limbSwingAmount, rotationFloat, rotationYaw, rotationPitch, partialTicks, entity);
+                modelExtension.postRender((EntityPlayer) entity, this, partialTicks);
+            }
         }
     }
 }

@@ -1,13 +1,14 @@
 package net.ilexiconn.llibrary.client;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.ilexiconn.llibrary.client.gui.GuiSurvivalTab;
 import net.ilexiconn.llibrary.common.block.IHighlightedBlock;
+import net.ilexiconn.llibrary.common.survivaltab.SurvivalTab;
+import net.ilexiconn.llibrary.common.survivaltab.TabHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -25,8 +26,6 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class ClientEventHandler
 {
-    private EntityRenderer renderer, prevRenderer;
-
     @SubscribeEvent
     public void blockHighlight(DrawBlockHighlightEvent event)
     {
@@ -76,39 +75,20 @@ public class ClientEventHandler
     }
 
     @SubscribeEvent
-    public void renderTick(TickEvent.RenderTickEvent event)
+    public void initGui(GuiScreenEvent.InitGuiEvent.Post event)
     {
-        /*Minecraft mc = Minecraft.getMinecraft();
-
-        if (mc.theWorld != null)
+        for (SurvivalTab survivalTab : TabHelper.getSurvivalTabs())
         {
-            if (event.phase == TickEvent.Phase.START)
+            if (survivalTab.getSurvivalTab().getContainerGuiClass() != null && survivalTab.getSurvivalTab().getContainerGuiClass().isInstance(event.gui))
             {
-                if (renderer == null) renderer = new PlayerOffsetRenderer(mc);
-                if (mc.entityRenderer != renderer)
+                int count = 2;
+
+                for (SurvivalTab tab : TabHelper.getSurvivalTabs())
                 {
-                    prevRenderer = mc.entityRenderer;
-                    mc.entityRenderer = renderer;
+                    event.buttonList.add(new GuiSurvivalTab(count, tab));
+                    count++;
                 }
             }
-            else if (prevRenderer != null && mc.entityRenderer != prevRenderer) mc.entityRenderer = prevRenderer;
         }
-        else if (prevRenderer != null && mc.entityRenderer != prevRenderer) mc.entityRenderer = prevRenderer;*/
-    }
-
-    @SubscribeEvent
-    public void renderPlayerPre(RenderPlayerEvent.Pre event)
-    {
-        /*if (PlayerOffsetRenderer.getOffsetY(Minecraft.getMinecraft().thePlayer) != 1.62f)
-        {
-            GL11.glPushMatrix();
-            GL11.glTranslatef(0f, -6.325f, 0f);
-        }*/
-    }
-
-    @SubscribeEvent
-    public void renderPlayerPost(RenderPlayerEvent.Post event)
-    {
-        /*if (PlayerOffsetRenderer.getOffsetY(Minecraft.getMinecraft().thePlayer) != 1.62f) GL11.glPopMatrix();*/
     }
 }

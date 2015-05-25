@@ -1,13 +1,6 @@
 package javabuckets.mods.ihm.instants;
 
-import java.util.List;
-
-import javabuckets.mods.ihm.utility.Reference;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -64,7 +57,7 @@ public class InstantDefaultHouse extends InstantHouseBase
 			
 			if (!player.capabilities.isCreativeMode)
 			{
-				player.inventory.consumeInventoryItem(this);
+				itemstack.stackSize--;
 			}
 			return true;
 		}

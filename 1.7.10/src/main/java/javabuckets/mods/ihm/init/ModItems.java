@@ -4,6 +4,7 @@ import javabuckets.mods.ihm.instants.InstantCoreBase;
 import javabuckets.mods.ihm.instants.InstantDefaultHouse;
 import javabuckets.mods.ihm.instants.InstantHouseBase;
 import javabuckets.mods.ihm.instants.InstantJediTemple;
+import javabuckets.mods.ihm.instants.InstantTent;
 import javabuckets.mods.ihm.utility.ItemRegistry;
 import net.minecraft.item.Item;
 
@@ -14,6 +15,8 @@ public class ModItems
 	public static Item instantCoreTier3;
 	
 	public static Item defaultHouse;
+	public static Item tent;
+	
 	public static Item jediTemple;
 	
 	public static void init()
@@ -27,10 +30,17 @@ public class ModItems
 		instantCoreTier3 = new InstantCoreBase().setTier(3);
 		ItemRegistry.registerItem(instantCoreTier3, "Instant Core Tier 3");
 		
+		tent = new InstantTent(0);
+		ItemRegistry.registerItem(tent, "Tent");
+		
 		defaultHouse = new InstantDefaultHouse();
 		ItemRegistry.registerItem(defaultHouse, "Default House");
 		
+		
+		
 		jediTemple = new InstantJediTemple();
 		ItemRegistry.registerItem(jediTemple, "Jedi Temple");
+		
+		
 	}
 }

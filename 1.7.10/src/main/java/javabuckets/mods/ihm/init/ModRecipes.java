@@ -16,5 +16,6 @@ public class ModRecipes
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.defaultHouse), new Object[] 		{ "SSS", "WCW", "PPP", 'S', Blocks.stonebrick, 'W', "logWood", 'P', "plankWood", 'C', ModItems.instantCoreTier1 }));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.jediTemple), new Object[]         { "QGQ", "QTQ", "SDS", 'Q', Blocks.quartz_block, 'G', Blocks.glowstone, 'T', ModItems.instantCoreTier3, 'S', Blocks.quartz_stairs, 'D', Items.diamond_sword }));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.tent), new Object[]         		{ "WWW", "TSF", "COF", 'W', Blocks.wool, 'T', Blocks.torch, 'S', ModItems.instantCoreTier1, 'F', Blocks.fence, 'C', Blocks.crafting_table, 'O', Blocks.furnace}));
 	}
 }
