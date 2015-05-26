@@ -6,6 +6,7 @@
         "authorList": ["JavaBuckets"],
         "credits": "",
         "url": "http://www.planetminecraft.com/mod/instanthouse-mod-132-one-click-one-house/",
-        "description": "Ever wanted a cool house for your survival save, a house where you can start off from, but didn't really want to build it? Then this mod is for you!"
-    }
+        "description": "Ever wanted a cool house for your survival save, a house where you can start off from, but didn't really want to build it? Then this mod is for you!",
+	    "dependences": ["llibrary"]
+	}
 ]
